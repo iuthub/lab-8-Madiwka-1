@@ -1,0 +1,39 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::group(['prefix'=> 'admin'],function(){
+	Route::get('',[
+		'uses'=> 'PostController@getAdminIndex',
+		'as'=> 'admin.index']);
+	Route::get('create',[
+		'uses'=> 'PostController@getAdminCreate',
+		'as'=> 'admin.create']);
+	Route::post('create',[
+		'uses'=> 'PostController@postAdminCreate',
+		'as'=> 'admin.index']);
+	Route::get('edit/{id}',[
+		'uses'=> 'PostController@getAdminEdit',
+		'as'=> 'admin.edit']);
+	Route::get('edit',[
+		'uses'=> 'PostController@getAdminUpdate',
+		'as'=> 'admin.update']);
+});
+Route::get('about',function(){
+	return view('other.about');
+})->name('other.about');
+Route::get('/', [
+		'uses'=> 'PostController@getIndex',
+		'as'=> 'blog.index']);
+Route::get('post/{id}',[
+		'uses'=> 'PostController@getPost',
+		'as'=> 'blog.post']);
